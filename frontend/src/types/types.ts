@@ -50,7 +50,7 @@ export interface IVerifyPaymentRequestObject {
   registerType: string;
   occupation: string;
   member: "IEEE member" | "non-IEEE member" | "IES member";
-  numberOfPages: "MoreThan6" | "LessEqual6";
+  numberOfPages: "MoreThan10" | "LessEqual10";
   extraPages: string;
   amount: number;
   designation?: string;

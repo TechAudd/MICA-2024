@@ -200,17 +200,17 @@ IEEE Membership: ${populatedForm.member}`;
     paperDetails =`Paper Details:
 Research Title: ${populatedForm.researchTitle}`;
   }else{
-    if(populatedForm.pages === "6"){
+    if(populatedForm.pages === "10"){
         paperDetails =`Paper Details:
 Paper Title: ${populatedForm.paperTitle}
 Paper ID: ${populatedForm.paperId}
-Number of Pages: Less than or equal to 6
+Number of Pages: Less than or equal to 10
 Extra Pages: 0`;
     } else {
       paperDetails =`Paper Details:
 Paper Title: ${populatedForm.paperTitle}
 Paper ID: ${populatedForm.paperId}
-Number of Pages: More than 6
+Number of Pages: More than 10
 Extra Pages: ${populatedForm.pages}`;
 
     }
@@ -485,12 +485,12 @@ export const updateWithTxnid = async (req, res) => {
     const formData = await Form.findOne({ txnid: txnid });
 
     let extraPages, numberOfPages;
-    if (formData.pages == "6") {
+    if (formData.pages == "10") {
       extraPages = "0"
-      numberOfPages = "LessEqual6"
+      numberOfPages = "LessEqual10"
     } else {
       extraPages = formData.pages
-      numberOfPages = "MoreThan6"
+      numberOfPages = "MoreThan10"
     }
 
     const currency = formData.currency
@@ -713,12 +713,12 @@ export const sendMailtoAll = async (req, res) => {
       }
 
       let extraPages, numberOfPages;
-      if (formData.pages === "6") {
+      if (formData.pages === "10") {
         extraPages = "0";
-        numberOfPages = "LessEqual6";
+        numberOfPages = "LessEqual10";
       } else {
         extraPages = formData.pages;
-        numberOfPages = "MoreThan6";
+        numberOfPages = "MoreThan10";
       }
 
       const currency = formData.currency;

@@ -46,7 +46,7 @@ const FormPartThree: React.FC = () => {
   const paperTitle = watch("paperTitle");
 
   useEffect(() => {
-    if (numberOfPages === "LessEqual6") {
+    if (numberOfPages === "LessEqual10") {
       const updatedValues = {
         paperId,
         paperTitle,
@@ -177,8 +177,8 @@ const FormPartThree: React.FC = () => {
                     <option value="" disabled>
                       Select number of pages
                     </option>
-                    <option value="LessEqual6">Equal to or less than 6</option>
-                    <option value="MoreThan6">More than 6</option>
+                    <option value="LessEqual10">Equal to or less than 10</option>
+                    <option value="MoreThan10">More than 10</option>
                   </select>
                 )}
               />
@@ -189,7 +189,7 @@ const FormPartThree: React.FC = () => {
               )}
             </div>
 
-            {numberOfPages === "MoreThan6" && (
+            {numberOfPages === "MoreThan10" && (
               <div className="mb-4">
                 <label htmlFor="extraValue" className="block font-bold mb-1">
                   Number of extra pages
@@ -212,7 +212,7 @@ const FormPartThree: React.FC = () => {
                   )}
                 />
                 <span>
-                  Extra Page Registration (for every extra page of the paper with more than 6 pages)
+                  Extra Page Registration (for every extra page of the paper with more than 10 pages)
                   ( {`${currentFormOneValues.currency === "USD" ? "35 USD" : "2938 INR"}`})
                 </span>
 
