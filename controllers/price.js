@@ -96,7 +96,7 @@ export const getPrices = async (req, res) => {
           IEEE: [],
           NonIEEE: [],
         },
-        Attendee: [],
+        Listener: [],
       },
     };
 
@@ -126,8 +126,8 @@ export const getPrices = async (req, res) => {
             USD: price.USD,
           });
         }
-      } else if (price.title === "Attendee") {
-        response.Normal.Attendee.push({
+      } else if (price.title === "Listener") {
+        response.Normal.Listener.push({
           INR: price.INR,
           USD: price.USD,
         });

@@ -146,8 +146,8 @@ export async function calculateAmount(data) {
   const priceType = today <= earlyBirdEndDate ? "Early Bird" : "Normal";
   // Determine the title based on registerType and occupation
   let title;
-  if (registerType === "Attendee") {
-    title = "Attendee";
+  if (registerType === "Listener") {
+    title = "Listener";
   } else if (registerType === "Doctoral Consortium") {
     title = "Doctoral Consortium";
   } else if (occupation === "Student") {
@@ -186,10 +186,10 @@ export async function calculateAmount(data) {
   let baseAmount =
     currency === "INR" ? parseFloat(price.INR) : parseFloat(price.USD);
 
-  // Add extra page charges if applicable (excluding Attendee and Doctoral Consortium)
+  // Add extra page charges if applicable (excluding Listener and Doctoral Consortium)
   if (
     numberOfPages === "MoreThan10" &&
-    registerType !== "Attendee" &&
+    registerType !== "Listener" &&
     registerType !== "Doctoral Consortium"
   ) {
     const extraPageCharges = extraPages * (currency === "INR" ? 2938 : 35);

@@ -25,7 +25,7 @@ interface ModalProps {
 }
 
 interface RequestData {
-  registerType: "Doctoral Consortium" | "Paper Author" | "Attendee";
+  registerType: "Doctoral Consortium" | "Paper Author" | "Listener";
   name: string;
   phone: string;
   mailId: string;
@@ -98,7 +98,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const findPages = () => {
-    if (currentValues.role === ROLES.ATTENDEE) {
+    if (currentValues.role === ROLES.LISTENER) {
       return "";
     } else {
       return currentFormThreeValues?.numberOfPages === "MoreThan10"
@@ -113,7 +113,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         ? "Doctoral Consortium"
         : currentValues?.role === ROLES.PAPER_AUTHOR
           ? "Paper Author"
-          : "Attendee",
+          : "Listener",
     name: currentFormOneValues?.name || "",
     phone: currentFormOneValues?.contact || "",
     mailId: currentFormOneValues?.email || "",
@@ -141,7 +141,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         ? "Doctoral Consortium"
         : currentValues?.role === ROLES.PAPER_AUTHOR
           ? "Paper Author"
-          : "Attendee",
+          : "Listener",
     name: currentFormOneValues?.name || "",
     phone: currentFormOneValues?.contact || "",
     mailId: currentFormOneValues?.email || "",
@@ -207,7 +207,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           ? "Doctoral Consortium"
           : formTwoValues?.role === ROLES.PAPER_AUTHOR
             ? "Paper Author"
-            : "Attendee",
+            : "Listener",
       occupation:
         formTwoValues?.functionArea === FUNCTIONING_AREA.INDUSTRYEXPERT
           ? "Industry Expert"

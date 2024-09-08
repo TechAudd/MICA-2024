@@ -46,7 +46,7 @@ const RegistrationDisplayCompnent: React.FC<IData> = ({ data }) => {
         <hr />
         {data.vals2 ? (
           <ul className="list-none font-extrabold pl-0 space-y-2 text-gray-700">
-            <li className="font-bold text-gray-600">Role: {data.vals2.role === ROLES.DOCTORAL_CONSORTIUM ? "Research Colloquium" : data.vals2.role === ROLES.PAPER_AUTHOR ? "Paper Author" : data.vals2.role === ROLES.ATTENDEE ? "Listener" : ""}</li>
+            <li className="font-bold text-gray-600">Role: {data.vals2.role === ROLES.DOCTORAL_CONSORTIUM ? "Research Colloquium" : data.vals2.role === ROLES.PAPER_AUTHOR ? "Paper Author" : data.vals2.role === ROLES.LISTENER ? "Listener" : ""}</li>
             <li className="font-bold text-gray-600">
               Function Area: {data.vals2.functionArea}
             </li>

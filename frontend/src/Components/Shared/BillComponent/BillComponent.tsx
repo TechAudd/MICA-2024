@@ -91,7 +91,7 @@ const BillComponent: React.FC = () => {
             ? "Doctoral Consortium"
             : data?.role === ROLES.PAPER_AUTHOR
               ? "Paper Author"
-              : "Attendee",
+              : "Listener",
         name: data?.name || "",
         phone: data?.contact || "",
         mailId: data?.email || "",

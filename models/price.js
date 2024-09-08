@@ -10,7 +10,7 @@ const priceSchema = new mongoose.Schema({
   },
   title: {
     type: "String",
-    enum: ["Officials", "Student", "Attendee", "Doctoral Consortium", "Student Additional Registration"],
+    enum: ["Officials", "Student", "Listener", "Doctoral Consortium", "Student Additional Registration"],
     required: true,
   },
   member: {

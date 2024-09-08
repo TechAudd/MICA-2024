@@ -11,7 +11,7 @@ const formSchema = new Schema(
     },
     registerType: {
       type: String,
-      enum: ["Paper Author", "Doctoral Consortium", "Attendee"],
+      enum: ["Paper Author", "Doctoral Consortium", "Listener"],
       required: true,
     },
     name: {

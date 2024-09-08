@@ -67,20 +67,20 @@ const Graph: React.FC<GraphProps> = ({ data }) => {
         backgroundColor: 'rgba(255, 159, 64, 0.6)',
       },
       {
-        label: 'Attendee - IEEE Member',
+        label: 'Listener - IEEE Member',
         data: [
-          data.data['Attendee'].Faculty['IEEE member'],
-          data.data['Attendee'].Student['IEEE member'],
-          data.data['Attendee']['Industry Expert']['IEEE member'],
+          data.data['Listener'].Faculty['IEEE member'],
+          data.data['Listener'].Student['IEEE member'],
+          data.data['Listener']['Industry Expert']['IEEE member'],
         ],
         backgroundColor: 'rgba(255, 206, 86, 0.6)',
       },
       {
-        label: 'Attendee - Non-IEEE Member',
+        label: 'Listener - Non-IEEE Member',
         data: [
-          data.data['Attendee'].Faculty['non-IEEE member'],
-          data.data['Attendee'].Student['non-IEEE member'],
-          data.data['Attendee']['Industry Expert']['non-IEEE member'],
+          data.data['Listener'].Faculty['non-IEEE member'],
+          data.data['Listener'].Student['non-IEEE member'],
+          data.data['Listener']['Industry Expert']['non-IEEE member'],
         ],
         backgroundColor: 'rgba(231, 76, 60, 0.6)',
       },

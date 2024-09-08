@@ -194,7 +194,7 @@ IEEE Membership: ${populatedForm.member}`;
   }
 
   let paperDetails = ``;
-  if (populatedForm.registerType === "Attendee"){
+  if (populatedForm.registerType === "Listener"){
     paperDetails =``;
   } else if(populatedForm.registerType === "Research Consortium") {
     paperDetails =`Paper Details:
@@ -676,7 +676,7 @@ export const getRegistrationCounts = async (req, res) => {
     // Aggregation to count INR, USD, Attendee, Doctoral Consortium, Paper Author, and Members
     const inrCount = await Form.countDocuments({ ...query, currency: 'INR' });
     const usdCount = await Form.countDocuments({ ...query, currency: 'USD' });
-    const attendeeCount = await Form.countDocuments({ ...query, registerType: 'Attendee' });
+    const attendeeCount = await Form.countDocuments({ ...query, registerType: 'Listener' });
     const doctoralConsortiumCount = await Form.countDocuments({ ...query, registerType: 'Doctoral Consortium' });
     const paperAuthorCount = await Form.countDocuments({ ...query, registerType: 'Paper Author' });
     const memberCount = await Form.countDocuments({ ...query, member: true });

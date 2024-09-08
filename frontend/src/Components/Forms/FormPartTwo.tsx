@@ -68,7 +68,7 @@ const FormPartTwo: React.FC = () => {
     handleOpenModal();
     updateCurrentForm2Values(data);
     localStorage.setItem("FormPartTwo", JSON.stringify(data));
-    if (role !== "Attendee") {
+    if (role !== "Listener") {
       if (progress < 3) {
         updateProgress();
       }
@@ -112,7 +112,7 @@ const FormPartTwo: React.FC = () => {
                     </option>
                   )} */}
                   
-                  <option value={ROLES.ATTENDEE}>Listener</option>
+                  <option value={ROLES.LISTENER}>Listener</option>
                 </select>
                 <UserIcon className={iconClassName} />
               </div>
@@ -296,7 +296,7 @@ const FormPartTwo: React.FC = () => {
           >
             Back
           </button>
-          {progress === 3 || role === "Attendee" ? (
+          {progress === 3 || role === "Listener" ? (
             <button
               type="submit"
               className="w-1/2 lg:w-2/6 p-3 bg-blue-600 text-white rounded shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"

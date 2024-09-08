@@ -61,7 +61,7 @@ export type currencyType = CURRENCY.INR | CURRENCY.USD;
 export type roleType =
   | ROLE.PAPER_AUTHOR
   | ROLE.DOCTORAL_CONSORTIUM
-  | ROLE.ATTENDEE;
+  | ROLE.LISTENER;
 
 export type functionAreaType =
   | FUNCTIONING_AREA.FACULTY
@@ -189,7 +189,7 @@ interface ResponseFunctionalArea {
 export interface ResponseRoleType {
   "Paper Author": ResponseFunctionalArea;
   "Doctoral Consortium": ResponseFunctionalArea;
-  Attendee: ResponseFunctionalArea;
+  Listener: ResponseFunctionalArea;
 }
 
 export interface OverviewResponseData {

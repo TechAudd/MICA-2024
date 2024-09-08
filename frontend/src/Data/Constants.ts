@@ -1,7 +1,7 @@
 export enum ROLE {
   PAPER_AUTHOR = "Paper Author",
   DOCTORAL_CONSORTIUM = "Doctoral Consortium",
-  ATTENDEE = "Attendee",
+  LISTENER = "Listener",
 }
 
 export enum FUNCTIONING_AREA {
@@ -31,7 +31,7 @@ export enum PAGES {
 export const ROLES = {
   PAPER_AUTHOR: "Paper Author",
   DOCTORAL_CONSORTIUM: "Doctoral Consortium",
-  ATTENDEE: "Attendee",
+  LISTENER: "Listener",
 };
 
 export const FUNCTIONAL_AREA = {
