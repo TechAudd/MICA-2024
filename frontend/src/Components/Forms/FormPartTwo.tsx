@@ -112,7 +112,7 @@ const FormPartTwo: React.FC = () => {
                     </option>
                   )} */}
                   
-                  <option value={ROLES.ATTENDEE}>Attendee (No Paper)</option>
+                  <option value={ROLES.ATTENDEE}>Listener</option>
                 </select>
                 <UserIcon className={iconClassName} />
               </div>
@@ -231,7 +231,7 @@ const FormPartTwo: React.FC = () => {
                   />
                   <label htmlFor="nonIeeeMember">Non-IEEE member</label>
                 </div>
-                <div className="mr-4">
+                {/* <div className="mr-4">
                   <input
                     {...field}
                     type="radio"
@@ -243,7 +243,7 @@ const FormPartTwo: React.FC = () => {
                     className="mr-2"
                   />
                   <label htmlFor="iesMember">IES member</label>
-                </div>
+                </div> */}
               </div>
             )}
           />

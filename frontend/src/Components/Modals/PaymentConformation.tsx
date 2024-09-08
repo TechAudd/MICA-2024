@@ -101,7 +101,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     if (currentValues.role === ROLES.ATTENDEE) {
       return "";
     } else {
-      return currentFormThreeValues?.numberOfPages === "MoreThan6"
+      return currentFormThreeValues?.numberOfPages === "MoreThan10"
         ? currentFormThreeValues?.extraValue?.toString()
         : "8";
     }

@@ -188,7 +188,7 @@ export async function calculateAmount(data) {
 
   // Add extra page charges if applicable (excluding Attendee and Doctoral Consortium)
   if (
-    numberOfPages === "MoreThan6" &&
+    numberOfPages === "MoreThan10" &&
     registerType !== "Attendee" &&
     registerType !== "Doctoral Consortium"
   ) {

@@ -24,8 +24,8 @@ export enum MEMBERSHIP {
 }
 
 export enum PAGES {
-  MORETHANEIGHT = "MoreThan6",
-  LESSTHANEIGHT = "LessEqual6",
+  MORETHANEIGHT = "MoreThan10",
+  LESSTHANEIGHT = "LessEqual10",
 }
 
 export const ROLES = {

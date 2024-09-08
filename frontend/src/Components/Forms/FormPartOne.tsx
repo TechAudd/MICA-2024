@@ -186,8 +186,8 @@ const FormPartOne: React.FC = () => {
 
       <div className="mb-4 w-2/4 ">
         <label className="block font-bold mb-1">Pay in:</label>
-        <div className="flex justify-around">
-          <div className="flex items-center">
+        <div className="flex items-start">
+          <div className="flex items-start">
             <input
               id="currencyINR"
               type="radio"
@@ -199,7 +199,7 @@ const FormPartOne: React.FC = () => {
             />
             <label htmlFor="currencyINR">INR</label>
           </div>
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <input
               id="currencyUSD"
               type="radio"
@@ -210,7 +210,7 @@ const FormPartOne: React.FC = () => {
               className="mr-2"
             />
             <label htmlFor="currencyUSD">USD</label>
-          </div>
+          </div> */}
         </div>
         {errors.currency && (
           <span className="text-red-500">{errors.currency.message}</span>
