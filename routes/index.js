@@ -17,11 +17,13 @@ import {
   getPricesAdmin,
   getConversionRate,
 } from "../controllers/price.js";
+import multer from 'multer';
 
 import { registersCount, registersRevenue } from "../controllers/statistics.js";
 
 const router = express.Router();
-
+const storage = multer.memoryStorage(); // Store files in memory
+const upload = multer({ storage: storage });
 //Admin Login routes
 router.post("/admin-login", adminLogin);
 router.post("/admin-register", adminRegister);
@@ -33,7 +35,7 @@ router.put("/updateWithTxnid/:txnid", updateWithTxnid);
 router.get("/getRegister/:id", getRegister);
 router.get("/getAllRegisters", getAllRegisters);
 router.get("/getRegistrationCounts", getRegistrationCounts);
-router.post("/uploadZip", uploadZip);
+router.post("/uploadZip",upload.single('file'), uploadZip);
 
 //Prices routes
 router.post("/addPrices", addPrices);

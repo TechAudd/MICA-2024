@@ -114,13 +114,20 @@ const FormPartThree: React.FC = () => {
       return;
     }
 
-    // const formData = new FormData();
-    // formData.append('zipFile', zipFile);
-  
+    const formData = new FormData();
+    formData.append('file', zipFile);
+    
     const response = await fetch(uploadZipUrl, {
       method: 'POST',
-      body: zipFile,
+      body: formData, // Use FormData object for multipart/form-data
     });
+    
+    if (!response.ok) {
+      console.error('File upload failed:', response.statusText);
+    } else {
+      console.log('File uploaded successfully');
+    }
+    
 
     const result = await response.json();
     console.log(result.message);
