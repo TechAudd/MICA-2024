@@ -125,6 +125,8 @@ const FormPartThree: React.FC = () => {
     if (!response.ok) {
       console.error('File upload failed:', response.statusText);
     } else {
+      console.log(response);
+      
       console.log('File uploaded successfully');
     }
     

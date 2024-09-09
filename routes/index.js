@@ -22,8 +22,10 @@ import multer from 'multer';
 import { registersCount, registersRevenue } from "../controllers/statistics.js";
 
 const router = express.Router();
+
 const storage = multer.memoryStorage(); // Store files in memory
 const upload = multer({ storage: storage });
+
 //Admin Login routes
 router.post("/admin-login", adminLogin);
 router.post("/admin-register", adminRegister);

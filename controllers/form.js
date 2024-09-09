@@ -9,6 +9,8 @@ import qrcode from "qrcode";
 import { calculateAmount } from "../routes/payment.js";
 import path from "path";
 import moment from 'moment-timezone';
+import cloudinary from "../cloudinaryConfig.js";
+import streamifier from 'streamifier';
 dotenv.config();
 
 export const addRegister = async (req, res) => {
@@ -583,7 +585,38 @@ export const uploadZip = async (req, res) => {
     return res.status(400).json({ message: 'File size exceeds 5MB limit' });
   }
 
-  res.status(200).json({ message: 'File uploaded successfully' });
+  try {
+    // Create a readable stream from the file buffer
+    const streamUpload = (fileBuffer) => {
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          { resource_type: 'auto', public_id: `uploads/${file.originalname}` },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve(result);
+          }
+        );
+        streamifier.createReadStream(fileBuffer).pipe(uploadStream);
+      });
+    };
+
+    // Upload the file to Cloudinary
+    const result = await streamUpload(file.buffer);
+
+    // Log the result for debugging
+    console.log("Upload result:", result);
+
+    // Respond with the Cloudinary URL and any other information you need
+    res.status(200).json({
+      message: 'File uploaded successfully',
+      url: result.secure_url, // The URL of the uploaded file
+      public_id: result.public_id, // The public ID of the uploaded file
+      asset_id: result.asset_id
+    });
+  } catch (error) {
+    console.error("Error uploading file to Cloudinary:", error);
+    res.status(500).json({ message: 'Error uploading file' });
+  }
 };
 
 export const getAllRegisters = async (req, res) => {
