@@ -6,7 +6,7 @@ import { ROLES } from "../../Data/Constants";
 import { Form3Context } from "../../Context/part3Context";
 import { IFromThreeValues } from "../../types/types";
 import { Form1Context } from "../../Context/part1Context";
-
+import {BASE_URL,UPLOAD_FILE} from "../../services/apiConstants"
 const FormPartThree: React.FC = () => {
   const data = localStorage.getItem("FormPartTwo");
   const isDoc: boolean =
@@ -16,7 +16,7 @@ const FormPartThree: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { updateFormThreeValues } = React.useContext(Form3Context);
   const { currentFormOneValues } = React.useContext(Form1Context)
-
+  const [zipFile, setZipFile] = useState<File | null>(null);
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -94,6 +94,39 @@ const FormPartThree: React.FC = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    const maxSize = 5 * 1024 * 1024;  // 5MB in bytes
+  
+    if (file && file.size <= maxSize) {
+      setZipFile(file);
+    } else {
+      alert('Please select a zip file under 5MB.');
+    }
+  };
+
+  const handleFileUpload = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const uploadZipUrl = BASE_URL + UPLOAD_FILE;
+    if (!zipFile) {
+      alert('No file selected');
+      return;
+    }
+
+    // const formData = new FormData();
+    // formData.append('zipFile', zipFile);
+  
+    const response = await fetch(uploadZipUrl, {
+      method: 'POST',
+      body: zipFile,
+    });
+
+    const result = await response.json();
+    console.log(result.message);
+  };
+  
+
 
   return (
     <>
@@ -188,6 +221,7 @@ const FormPartThree: React.FC = () => {
                 </span>
               )}
             </div>
+            
 
             {numberOfPages === "MoreThan10" && (
               <div className="mb-4">
@@ -223,6 +257,28 @@ const FormPartThree: React.FC = () => {
                 )}
               </div>
             )}
+    <div className="mb-4">
+  <label htmlFor="file" className="block font-bold mb-1">
+    Select file and upload
+  </label>
+  <div className="flex items-center space-x-3">
+    <input
+      name="file"
+      id="file"
+      type="file"
+      accept=".zip"
+      onChange={handleFileChange}
+      className="block w-full text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 focus:outline-none"
+    />
+    <button
+      onClick={handleFileUpload}
+      className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded text-sm"
+    >
+      Upload
+    </button>
+  </div>
+</div>
+
           </>
         )}
 

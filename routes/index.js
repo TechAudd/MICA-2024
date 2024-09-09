@@ -8,6 +8,7 @@ import {
   getAllRegisters,
   getRegistrationCounts,
   sendMailtoAll,
+  uploadZip
 } from "../controllers/form.js";
 import {
   addPrices,
@@ -32,6 +33,7 @@ router.put("/updateWithTxnid/:txnid", updateWithTxnid);
 router.get("/getRegister/:id", getRegister);
 router.get("/getAllRegisters", getAllRegisters);
 router.get("/getRegistrationCounts", getRegistrationCounts);
+router.post("/uploadZip", uploadZip);
 
 //Prices routes
 router.post("/addPrices", addPrices);
@@ -45,5 +47,6 @@ router.get("/registersRevenue", registersRevenue);
 router.get("/getConversionRate", getConversionRate);
 
 router.put("/sendMailtoAll", sendMailtoAll);
+
 
 export default router;

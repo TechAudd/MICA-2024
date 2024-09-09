@@ -9,6 +9,7 @@ import qrcode from "qrcode";
 import { calculateAmount } from "../routes/payment.js";
 import path from "path";
 import moment from 'moment-timezone';
+import { authorize, uploadZipToDrive } from './googleDrive.js'
 dotenv.config();
 
 export const addRegister = async (req, res) => {
@@ -570,6 +571,18 @@ export const getRegister = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+
+export const uploadZip = async (req, res) => {
+  const credentials = JSON.parse(fs.readFileSync('credentials.json'));
+  const file = req.file;
+  if (file.size > 5 * 1024 * 1024) { // 5 MB limit
+    return res.status(400).json({ message: 'File size exceeds 5MB limit' });
+  }
+  authorize(credentials, uploadZipToDrive, file);
+  res.status(200).json({ message: 'File uploaded successfully' });
+};
+
 
 export const getAllRegisters = async (req, res) => {
   try {
