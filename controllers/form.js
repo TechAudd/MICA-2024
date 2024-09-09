@@ -576,6 +576,7 @@ export const getRegister = async (req, res) => {
 export const uploadZip = async (req, res) => {
   const credentials = JSON.parse(fs.readFileSync('credentials.json'));
   const file = req.file;
+  console.log("file",file);
   if (file.size > 5 * 1024 * 1024) { // 5 MB limit
     return res.status(400).json({ message: 'File size exceeds 5MB limit' });
   }
