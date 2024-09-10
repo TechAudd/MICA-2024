@@ -79,7 +79,7 @@ const FormPartThree: React.FC = () => {
   
     // Add the uploaded file URL to the form data
     const finalData = { ...data, uploadedFileUrl, uploadedFileId };
-    updateFormThreeValues(finalData);
+    updateFormThreeValues(finalData as IFromThreeValues);
     localStorage.setItem("FormPartThree", JSON.stringify(finalData));
     handleOpenModal();
     if (progress < 3) {

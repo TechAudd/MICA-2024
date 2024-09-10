@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { ProgressContext } from "../../Context/ProgressContext";
 import { Form2Context } from "../../Context/part2Context";
@@ -9,14 +9,14 @@ import {
   CheckBadgeIcon,
   IdentificationIcon,
 } from "@heroicons/react/24/solid";
-import { CURRENCY, FUNCTIONAL_AREA, ROLES } from "../../Data/Constants";
+import { FUNCTIONAL_AREA, ROLES } from "../../Data/Constants";
 import { FormThreeContext } from "../../Context/lastFormContext";
 import { IFormTwoValues } from "../../types/types";
-import { Form1Context } from "../../Context/part1Context";
+// import { Form1Context } from "../../Context/part1Context";
 
 const FormPartTwo: React.FC = () => {
   const { updateCurrentForm2Values } = React.useContext(Form2Context);
-  const { currentFormOneValues } = useContext(Form1Context);
+  // const { currentFormOneValues } = useContext(Form1Context);
   const iconClassName = "absolute  w-6 h-6 left-3 top-2 text-gray-500";
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { progress, updateProgress, reduceProgress } = React.useContext(ProgressContext);
