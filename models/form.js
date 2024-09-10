@@ -83,6 +83,12 @@ const formSchema = new Schema(
     invoice: {
       type: String,
     },
+    uploadedFileUrl: {
+      type: String,
+    },
+    uploadedFileId: {
+      type: String,
+    }
   },
   {
     timestamps: true,

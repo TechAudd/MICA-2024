@@ -20,6 +20,7 @@ export const addRegister = async (req, res) => {
 
     // Extract the remaining data from the request body4
     const formData = { ...req.body};
+    console.log("formData-addRegister",formData);
     // Create a new form entry
     const newForm = new Form(formData);
     // Save the form entry to the database
@@ -396,12 +397,10 @@ Event Date: 26 September 2024 : 8:30 AM - 28 September 2024 : 8:00 PM (IST)
 
 const sendEmailWithAttachment = async (populatedForm, pdfBase64, eventPDFBase64) => {
   try {
-    console.log('Starting to send email...');
+    // console.log('Starting to send email...');
     
     const email = populatedForm.mailId;
     const userName = populatedForm.name;
-    console.log('Recipient email:', email);
-    console.log('Recipient name:', userName);
 
     const transporter = nodemailer.createTransport({
       // service: process.env.EMAIL_SERVICE,
@@ -418,7 +417,7 @@ const sendEmailWithAttachment = async (populatedForm, pdfBase64, eventPDFBase64)
       // logger: true, // log to console
       // debug: true,  // include SMTP traffic in the logs
     });
-    console.log('Transporter created');
+    // console.log('Transporter created');
 
     const attachment1 = {
       filename: "Invoice-" + populatedForm.txnid + ".pdf",
@@ -432,7 +431,7 @@ const sendEmailWithAttachment = async (populatedForm, pdfBase64, eventPDFBase64)
     console.log('Attachments created');
 
     const greeting = userName ? `Dear ${userName},` : "Dear Customer,";
-    console.log('Greeting created:', greeting);
+    // console.log('Greeting created:', greeting);
     
     // Mail options
     const mailOptions = {
@@ -455,7 +454,7 @@ const sendEmailWithAttachment = async (populatedForm, pdfBase64, eventPDFBase64)
       `,
       attachments: [attachment1, attachment2],
     };
-    console.log('Mail options created:', mailOptions);
+    // console.log('Mail options created:', mailOptions);
 
     // transporter.verify((error, success) => {
     //   if (error) {
@@ -466,7 +465,7 @@ const sendEmailWithAttachment = async (populatedForm, pdfBase64, eventPDFBase64)
     // });
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully:', info);
+    // console.log('Email sent successfully:', info);
     return info;
   } catch (error) {
     console.error('Error sending email:', error);
@@ -575,7 +574,7 @@ export const getRegister = async (req, res) => {
 
 export const uploadZip = async (req, res) => {
   const file = req.file;
-  console.log("File received:", file);
+  // console.log("File received:", file);
 
   if (!file) {
     return res.status(400).json({ message: 'No file uploaded' });
@@ -604,7 +603,7 @@ export const uploadZip = async (req, res) => {
     const result = await streamUpload(file.buffer);
 
     // Log the result for debugging
-    console.log("Upload result:", result);
+    // console.log("Upload result:", result);
 
     // Respond with the Cloudinary URL and any other information you need
     res.status(200).json({
@@ -613,6 +612,7 @@ export const uploadZip = async (req, res) => {
       public_id: result.public_id, // The public ID of the uploaded file
       asset_id: result.asset_id
     });
+
   } catch (error) {
     console.error("Error uploading file to Cloudinary:", error);
     res.status(500).json({ message: 'Error uploading file' });

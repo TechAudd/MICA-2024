@@ -12,6 +12,8 @@ export const Form3Context = createContext<IForm3ContextInterface>({
     numberOfPages: "",
     paperId: "",
     paperTitle: "",
+    uploadedFileUrl: "",
+    uploadedFileId: "",
   },
   updateFormThreeValues: () => {},
 });
@@ -25,6 +27,8 @@ export const Form3ValuesProvider: React.FC<FormProviderProps> = ({
       numberOfPages: "",
       paperId: "",
       paperTitle: "",
+      uploadedFileUrl: "", // Initialize the file URL state
+      uploadedFileId: "", // Initialize the file id state
     });
   const updateFormThreeValues = (value: IFromThreeValues) => {
     setCurrentFormThreeValues(value);

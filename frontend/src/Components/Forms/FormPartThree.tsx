@@ -20,6 +20,9 @@ const FormPartThree: React.FC = () => {
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+  const [uploadedFileUrl, setUploadedFileUrl] = useState<string | null>(null);
+  const [uploadedFileId, setUploadedFileId] = useState<string | null>(null);
+
 
   const formThree = localStorage.getItem("FormPartThree");
   const formThreeValues = formThree && JSON.parse(formThree);
@@ -69,8 +72,15 @@ const FormPartThree: React.FC = () => {
 
 
   const onSubmit: SubmitHandler<IFromThreeValues> = (data) => {
-    updateFormThreeValues(data);
-    localStorage.setItem("FormPartThree", JSON.stringify(data));
+    if (!uploadedFileUrl) {
+      alert('Please upload the file before proceeding');
+      return;
+    }
+  
+    // Add the uploaded file URL to the form data
+    const finalData = { ...data, uploadedFileUrl, uploadedFileId };
+    updateFormThreeValues(finalData);
+    localStorage.setItem("FormPartThree", JSON.stringify(finalData));
     handleOpenModal();
     if (progress < 3) {
       updateProgress(); // Update progress context if progress is less than 3
@@ -125,14 +135,14 @@ const FormPartThree: React.FC = () => {
     if (!response.ok) {
       console.error('File upload failed:', response.statusText);
     } else {
-      console.log(response);
-      
-      console.log('File uploaded successfully');
+      console.log("Response-",response);
     }
     
 
     const result = await response.json();
-    console.log(result.message);
+    console.log("result-",result);
+    setUploadedFileUrl(result.url);
+    setUploadedFileId(result.asset_id)
   };
   
 

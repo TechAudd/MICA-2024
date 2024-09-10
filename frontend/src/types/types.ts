@@ -96,6 +96,8 @@ export interface IFromThreeValues {
   paperId?: string | "";
   paperTitle?: string | "";
   researchTitle?: string | "";
+  uploadedFileUrl: string | "", // Initialize the file URL state
+  uploadedFileId: string | "", // Initialize the file URL state
 }
 
 export interface IRegisterationDetails {

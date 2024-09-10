@@ -41,6 +41,8 @@ interface RequestData {
   currency?: string;
   designation?: string;
   researchTitle?: string;
+  uploadedFileUrl?: String;
+  uploadedFileId?: String;
 }
 
 interface ConversionRateResponse {
@@ -160,7 +162,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     pages: findPages() || "",
     price: netAmount,
     researchTitle: currentFormThreeValues?.researchTitle,
-    currency: currentFormOneValues.currency
+    currency: currentFormOneValues.currency ,
+    uploadedFileUrl :  currentFormThreeValues?.uploadedFileUrl,
+    uploadedFileId :  currentFormThreeValues?.uploadedFileId,
   };
 
 
