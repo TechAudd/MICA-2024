@@ -13,6 +13,8 @@ import { FUNCTIONAL_AREA, ROLES } from "../../Data/Constants";
 import { FormThreeContext } from "../../Context/lastFormContext";
 import { IFormTwoValues } from "../../types/types";
 // import { Form1Context } from "../../Context/part1Context";
+import { BASE_URL, UPLOAD_IMAGE } from "../../services/apiConstants"
+
 
 const FormPartTwo: React.FC = () => {
   const { updateCurrentForm2Values } = React.useContext(Form2Context);
@@ -23,6 +25,10 @@ const FormPartTwo: React.FC = () => {
   const formTwo = localStorage.getItem("FormPartTwo");
   const formTwoValues = formTwo && JSON.parse(formTwo);
   const { handleClick } = React.useContext(FormThreeContext);
+
+  const [selectedFileUrl, setSelectedFileUrl] = useState<File | null>(null);
+  const [selectedFileId, setSelectedFileId] = useState<File | null>(null);
+
 
   const membershipIdProvider = () => {
     if (formTwoValues?.ieeeMembership === "non-IEEE member" || formTwoValues?.ieeeMembership === "IES member") {
@@ -63,10 +69,46 @@ const FormPartTwo: React.FC = () => {
     }
   }, [ieeeMembership, setValue]);
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedFileUrl(e.target.files[0]);
+    }
+  };
+
+  const handleFileUpload = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const uploadZipUrl = BASE_URL + UPLOAD_IMAGE;
+    if (!selectedFileUrl) {
+      alert('No file selected');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', selectedFileUrl);
+
+    const response = await fetch(uploadZipUrl, {
+      method: 'POST',
+      body: formData, // Use FormData object for multipart/form-data
+    });
+
+    if (!response.ok) {
+      console.error('File upload failed:', response.statusText);
+    } else {
+      console.log("Response-", response);
+    }
+
+
+    const result = await response.json();
+    console.log("handleFileUpload", result);
+    setSelectedFileUrl(result.url);
+    setSelectedFileId(result.asset_id)
+  };
+
   const onSubmit: SubmitHandler<IFormTwoValues> = (data) => {
     handleClick();
     handleOpenModal();
-    updateCurrentForm2Values(data);
+    const finalData = { ...data, selectedFileUrl, selectedFileId };
+    updateCurrentForm2Values(finalData);
     localStorage.setItem("FormPartTwo", JSON.stringify(data));
     if (role !== "Listener") {
       if (progress < 3) {
@@ -106,12 +148,6 @@ const FormPartTwo: React.FC = () => {
                     Select your role
                   </option>
                   <option value={ROLES.PAPER_AUTHOR}>Paper Author</option>
-                  {/* {currentFormOneValues.currency !== CURRENCY.USD && (
-                    <option value={ROLES.DOCTORAL_CONSORTIUM}>
-                      Research Colloquium
-                    </option>
-                  )} */}
-                  
                   <option value={ROLES.LISTENER}>Listener</option>
                 </select>
                 <UserIcon className={iconClassName} />
@@ -142,24 +178,9 @@ const FormPartTwo: React.FC = () => {
                   </option>
                   <option value={FUNCTIONAL_AREA.FACULTY}>Faculty</option>
                   <option value={FUNCTIONAL_AREA.STUDENT}>Student</option>
-                  {/* {role === ROLES.PAPER_AUTHOR && (
-                    <option
-                      disabled={role !== ROLES.PAPER_AUTHOR}
-                      value={FUNCTIONING_AREA.STUDENT_FULL_REGISTRATION}
-                    >
-                      Student (Fully Registered)
-                    </option>
-                  )} */}
                   <option value={FUNCTIONAL_AREA.INDUSTRYEXPERT}>
                     Industry Expert
                   </option>
-
-                  {/* {currentFormOneValues.currency === CURRENCY.INR &&
-                    role === ROLES.PAPER_AUTHOR && (
-                      <option value={FUNCTIONING_AREA.STUDENT_ADDITIONAL}>
-                        Already registered student IEEE/Non-IEEE (Extra)
-                      </option>
-                    )} */}
                 </select>
                 <UserGroupIcon className={iconClassName} />
               </div>
@@ -231,19 +252,6 @@ const FormPartTwo: React.FC = () => {
                   />
                   <label htmlFor="nonIeeeMember">Non-IEEE member</label>
                 </div>
-                {/* <div className="mr-4">
-                  <input
-                    {...field}
-                    type="radio"
-                    id="iesMember"
-                    value="IES member"
-                    {...register("ieeeMembership", {
-                      required: "IES member type is required",
-                    })}
-                    className="mr-2"
-                  />
-                  <label htmlFor="iesMember">IES member</label>
-                </div> */}
               </div>
             )}
           />
@@ -282,8 +290,33 @@ const FormPartTwo: React.FC = () => {
               </span>
             )}
           </div>
-          
+
         )}
+        {/* Image Uploader for Students */}
+        {functionArea === FUNCTIONAL_AREA.STUDENT && (
+          <div className="mb-4">
+            <label htmlFor="fileUpload" className="block font-bold mb-1">
+              Upload Your Student ID
+            </label>
+            <div className="flex items-center space-x-3">
+
+            <input
+              type="file"
+              id="fileUpload"
+              onChange={handleFileChange}
+              className="block w-full text-sm text-gray-500 border border-gray-300 rounded-lg cursor-pointer"
+            />
+            <button
+              onClick={handleFileUpload}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded text-sm"
+            >
+              Upload
+            </button>
+            </div>
+
+          </div>
+        )}
+
         <p >Please bring a copy of your membership ID proof on the conference day.</p>
 
         <div className="flex justify-between mt-4">

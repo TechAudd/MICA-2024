@@ -88,7 +88,13 @@ const formSchema = new Schema(
     },
     uploadedFileId: {
       type: String,
-    }
+    },
+    selectedFileUrl: {
+      type: String,
+    },
+    selectedFileId: {
+      type: String,
+    },
   },
   {
     timestamps: true,

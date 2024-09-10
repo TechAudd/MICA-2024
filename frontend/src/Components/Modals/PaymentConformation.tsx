@@ -41,6 +41,8 @@ interface RequestData {
   currency?: string;
   designation?: string;
   researchTitle?: string;
+  selectedFileUrl?: string;
+  selectedFileId?: string;
   uploadedFileUrl?: String;
   uploadedFileId?: String;
 }
@@ -163,8 +165,11 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     price: netAmount,
     researchTitle: currentFormThreeValues?.researchTitle,
     currency: currentFormOneValues.currency ,
+    selectedFileUrl : currentValues?.selectedFileUrl,
+    selectedFileId : currentValues?.selectedFileId,
     uploadedFileUrl :  currentFormThreeValues?.uploadedFileUrl,
     uploadedFileId :  currentFormThreeValues?.uploadedFileId,
+    
   };
 
 

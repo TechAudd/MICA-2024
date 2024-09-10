@@ -8,7 +8,8 @@ import {
   getAllRegisters,
   getRegistrationCounts,
   sendMailtoAll,
-  uploadZip
+  uploadZip,
+  uploadImage
 } from "../controllers/form.js";
 import {
   addPrices,
@@ -38,6 +39,7 @@ router.get("/getRegister/:id", getRegister);
 router.get("/getAllRegisters", getAllRegisters);
 router.get("/getRegistrationCounts", getRegistrationCounts);
 router.post("/uploadZip",upload.single('file'), uploadZip);
+router.post("/uploadImage",upload.single('file'), uploadImage);
 
 //Prices routes
 router.post("/addPrices", addPrices);

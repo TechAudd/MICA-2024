@@ -14,6 +14,8 @@ export const Form2Context = createContext<IForm2ContextInterface>({
     ieeeMembership: "",
     membershipID: "",
     designation: "",
+    selectedFileUrl:"",
+    selectedFileId:"",
   },
   updateCurrentForm2Values: () => {},
 });
@@ -26,6 +28,8 @@ export const Form2ValuesProvider: React.FC<FormProviderProps> = ({
     functionArea: "",
     ieeeMembership: "",
     membershipID: "",
+    selectedFileUrl:"",
+    selectedFileId:"",
   });
 
   const updateCurrentForm2Values = (value: IFormTwoValues) => {
