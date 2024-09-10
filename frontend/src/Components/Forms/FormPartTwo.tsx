@@ -107,7 +107,11 @@ const FormPartTwo: React.FC = () => {
   const onSubmit: SubmitHandler<IFormTwoValues> = (data) => {
     handleClick();
     handleOpenModal();
-    const finalData = { ...data, selectedFileUrl, selectedFileId };
+    const finalData : IFormTwoValues = {
+      ...data,
+      selectedFileUrl: selectedFileUrl ? URL.createObjectURL(selectedFileUrl) : undefined, 
+      selectedFileId: selectedFileId ? selectedFileId.name : undefined 
+    };
     updateCurrentForm2Values(finalData);
     localStorage.setItem("FormPartTwo", JSON.stringify(data));
     if (role !== "Listener") {

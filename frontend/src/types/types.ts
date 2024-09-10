@@ -88,8 +88,8 @@ export interface IFormTwoValues {
   ieeeMembership: iEEEMembership | "";
   membershipID?: string | "";
   designation?: string | "";
-  selectedFileUrl: string | "",
-  selectedFileId: string | "",
+  selectedFileUrl?: string | "",
+  selectedFileId?: string | "",
 }
 
 export interface IFromThreeValues {
