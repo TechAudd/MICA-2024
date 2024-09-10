@@ -78,12 +78,12 @@ const generatePDFInvoice = async (populatedForm,basePrice) => {
     const contentWidth = pageWidth - 3 * margin;
 
     // Load logos
-    const leftLogoPath = path.resolve('logo/logoOne.png'); 
-    const rightLogoPath = path.resolve('logo/logoTwo.png');
+    // const leftLogoPath = path.resolve('logo/logoOne.png'); 
+    // const rightLogoPath = path.resolve('logo/logoTwo.png');
 
     // Add logos to PDF
-    doc.image(leftLogoPath, margin, margin, { width: 140, height:50 });
-    doc.image(rightLogoPath, pageWidth - margin - 100, margin, { width: 140, height:50 });
+    // doc.image(leftLogoPath, margin, margin, { width: 140, height:50 });
+    // doc.image(rightLogoPath, pageWidth - margin - 100, margin, { width: 140, height:50 });
 
     // Start PDF generation
     doc.fontSize(20).font('Helvetica-Bold').text('INVOICE', margin, doc.y + 80, { align: 'center' });

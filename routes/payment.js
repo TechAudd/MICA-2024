@@ -192,7 +192,7 @@ export async function calculateAmount(data) {
     registerType !== "Listener" &&
     registerType !== "Doctoral Consortium"
   ) {
-    const extraPageCharges = extraPages * (currency === "INR" ? 2938 : 35);
+    const extraPageCharges = extraPages * (currency === "INR" ? 1000 : 35);
     baseAmount += extraPageCharges;
   }
 

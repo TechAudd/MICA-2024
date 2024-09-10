@@ -266,7 +266,7 @@ const FormPartThree: React.FC = () => {
                 />
                 <span>
                   Extra Page Registration (for every extra page of the paper with more than 10 pages)
-                  ( {`${currentFormOneValues.currency === "USD" ? "35 USD" : "2938 INR"}`})
+                  ( {`${currentFormOneValues.currency === "USD" ? "35 USD" : "1000 INR"}`})
                 </span>
 
                 {errors.extraValue && (

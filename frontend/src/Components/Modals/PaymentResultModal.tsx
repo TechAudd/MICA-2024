@@ -11,7 +11,7 @@ export const PaymentResultModal: React.FC = () => {
       extra={[
         <Button
           onClick={() => {
-            window.location.href = "https://www.mahindrauniversity.edu.in/icpeev-2024/";
+            window.location.href = "https://www.mahindrauniversity.edu.in/advanced-communications-and-machine-intelligence-mica/";
             localStorage.clear();
           }}
           type="primary"
