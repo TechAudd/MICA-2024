@@ -20,7 +20,6 @@ export const addRegister = async (req, res) => {
 
     // Extract the remaining data from the request body4
     const formData = { ...req.body};
-    console.log("formData-addRegister",formData);
     // Create a new form entry
     const newForm = new Form(formData);
     // Save the form entry to the database
@@ -616,6 +615,54 @@ export const uploadZip = async (req, res) => {
   } catch (error) {
     console.error("Error uploading file to Cloudinary:", error);
     res.status(500).json({ message: 'Error uploading file' });
+  }
+};
+
+export const uploadImage = async (req, res) => {
+  const file = req.file;
+
+  if (!file) {
+    return res.status(400).json({ message: 'No image uploaded' });
+  }
+
+  if (file.size > 5 * 1024 * 1024) { // 5 MB limit for images
+    return res.status(400).json({ message: 'Image size exceeds 5MB limit' });
+  }
+
+  try {
+    // Create a readable stream from the file buffer
+    const streamUpload = (fileBuffer) => {
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          { 
+            resource_type: 'image', // Specify that the resource is an image
+            public_id: `images/${file.originalname}`, // Use 'images' directory for uploaded images
+            folder: 'uploads/images', // Folder in Cloudinary for organizing uploaded images
+            transformation: [{ width: 800, height: 600, crop: "limit" }] // Example transformation (optional)
+          },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve(result);
+          }
+        );
+        streamifier.createReadStream(fileBuffer).pipe(uploadStream);
+      });
+    };
+
+    // Upload the image to Cloudinary
+    const result = await streamUpload(file.buffer);
+
+    // Respond with the Cloudinary URL and other info
+    res.status(200).json({
+      message: 'Image uploaded successfully',
+      url: result.secure_url, // The URL of the uploaded image
+      public_id: result.public_id, // The public ID of the uploaded image
+      asset_id: result.asset_id
+    });
+
+  } catch (error) {
+    console.error("Error uploading image to Cloudinary:", error);
+    res.status(500).json({ message: 'Error uploading image' });
   }
 };
 

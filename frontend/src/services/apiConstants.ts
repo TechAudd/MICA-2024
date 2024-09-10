@@ -11,6 +11,7 @@ export const REGISTER_REVENU = "/form/registersRevenue";
 export const ADMIN_REGISTRATION: string = "/form/admin-login";
 export const UPDATE_REGISTER : string = "/form/updateRegister"
 export const UPLOAD_FILE : String = "/form/uploadZip";
+export const UPLOAD_IMAGE : String = "/form/uploadImage";
 
 
 export const CONVERSION_RATE = "/form/getConversionRate";
