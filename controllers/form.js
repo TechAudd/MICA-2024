@@ -78,12 +78,12 @@ const generatePDFInvoice = async (populatedForm,basePrice) => {
     const contentWidth = pageWidth - 3 * margin;
 
     // Load logos
-    // const leftLogoPath = path.resolve('logo/logoOne.png'); 
-    // const rightLogoPath = path.resolve('logo/logoTwo.png');
+    const leftLogoPath = path.resolve('logo/logoOne.png'); 
+    const rightLogoPath = path.resolve('logo/logoTwo.png');
 
     // Add logos to PDF
-    // doc.image(leftLogoPath, margin, margin, { width: 140, height:50 });
-    // doc.image(rightLogoPath, pageWidth - margin - 100, margin, { width: 140, height:50 });
+    doc.image(leftLogoPath, margin, margin, { width: 150, height:70 });
+    doc.image(rightLogoPath, pageWidth - margin - 100, margin, { width: 140, height:50 });
 
     // Start PDF generation
     doc.fontSize(20).font('Helvetica-Bold').text('INVOICE', margin, doc.y + 80, { align: 'center' });
@@ -152,8 +152,8 @@ const generatePDFInvoice = async (populatedForm,basePrice) => {
     doc.fontSize(14).font('Helvetica-Bold').text(`Total Amount: ${populatedForm.currency} ${totalAmount}`, margin, doc.y + 20);
     doc.moveDown(2);
 
-    doc.fontSize(12).font('Helvetica-Bold').text('Conference head', margin + contentWidth - doc.widthOfString('Conference head:'), doc.y + 20);
-    doc.fontSize(10).font('Helvetica-Bold').text('Dr. Sreedhar Madichetty', margin + contentWidth - doc.widthOfString('Dr. Sreedhar Madichetty'), doc.y);
+    // doc.fontSize(12).font('Helvetica-Bold').text('Conference head', margin + contentWidth - doc.widthOfString('Conference head:'), doc.y + 20);
+    // doc.fontSize(10).font('Helvetica-Bold').text('Dr. Sreedhar Madichetty', margin + contentWidth - doc.widthOfString('Dr. Sreedhar Madichetty'), doc.y);
 
     doc.end();
   });
@@ -254,7 +254,7 @@ Extra Pages: ${populatedForm.pages}`;
     doc.rect(50, 120, 500, 100).fill('#e31837');
 
     doc.fontSize(15).fillColor('white').text(
-      'Registration Confirmation: The Second International Conference on Cyber physical Systems, Power Electronics and Electric Vehicles- ICPEEV 2024',
+      'Registration Confirmation: Advanced Communications and Machine Intelligence- MICA 2024.',
       110,
       130,
       {
@@ -274,7 +274,7 @@ Extra Pages: ${populatedForm.pages}`;
       align: 'left',
     });
 
-const additionalText = `Thank you for purchasing 1 ticket(s) for The Second International Conference on Cyber physical Systems, Power Electronics and Electric Vehicles - ICPEEV 2024.`;
+const additionalText = `Thank you for purchasing 1 ticket(s) for Advanced Communications and Machine Intelligence- MICA 2024.`;
 
 // Regular text
 doc.fontSize(14).fillColor('black').text(additionalText, {
@@ -365,7 +365,7 @@ doc.fontSize(15).fillColor('black').font('Helvetica')
   .text(`
 Organizer: Mahindra University
 Venue: Mahindra University, Survey No. 62/1A, Bahadurpally, Jeedimetla, Hyderabad - 500043, Telangana, INDIA.
-Event Date: 26 September 2024 : 8:30 AM - 28 September 2024 : 8:00 PM (IST)
+Event Date: 18 October 2024 : 8:30 AM - 19 October 2024 : 8:00 PM (IST)
 `, 50, 420, {
     width: 520,
     align: 'left',
@@ -373,8 +373,8 @@ Event Date: 26 September 2024 : 8:30 AM - 28 September 2024 : 8:00 PM (IST)
       doc.fontSize(15).fillColor('black').text('Link: ', {
         width: 520,
         continued: true,
-      }).fillColor('blue').text('The Second International Conference on Cyber physical Systems, Power Electronics and Electric Vehicles - ICPEEV 2024.', {
-         link: 'https://ietcint.com/user/index',
+      }).fillColor('blue').text('Advanced Communications and Machine Intelligence- MICA 2024.', {
+         link: 'https://www.mahindrauniversity.edu.in/advanced-communications-and-machine-intelligence-mica/',
          underline: true
         });
 
@@ -440,8 +440,8 @@ const sendEmailWithAttachment = async (populatedForm, pdfBase64, eventPDFBase64)
       },
       to: email,
       // cc: process.env.EMAIL_USERNAME,
-      cc: "sreedhar.madichetty@mahindrauniversity.edu.in",
-      bcc: ["se22peee003@mahindrauniversity.edu.in","se22peee006@mahindrauniversity.edu.in"],
+      // cc: "sreedhar.madichetty@mahindrauniversity.edu.in",
+      // bcc: ["se22peee003@mahindrauniversity.edu.in","se22peee006@mahindrauniversity.edu.in"],
       subject: "Your Registration is Successfully",
       // text: `Your message body`,
       html: `
