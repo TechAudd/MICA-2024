@@ -53,9 +53,9 @@ const RegistrationDisplayCompnent: React.FC<IData> = ({ data }) => {
             {/* <li className="font-bold text-gray-600">
               IEEE Membership: {data.vals2.ieeeMembership === "non-IEEE member" ? "Non-IEEE Member" : data.vals2.membershipID === "IEEE member" ? "IEEE member" : ""}
             </li> */}
-            <li className="font-bold text-gray-600">
+            {/* <li className="font-bold text-gray-600">
               IEEE Membership: {data.vals2.ieeeMembership === "non-IEEE member" ? "Non-IEEE Member" : data.vals2.ieeeMembership === "IEEE member" ? "IEEE member" : data.vals2.ieeeMembership === "IES member" ? "IES member" : "" }
-            </li>
+            </li> */}
             {data.vals2.membershipID && (
               <li className="font-bold text-gray-600">
                 Membership ID: {data.vals2.membershipID}

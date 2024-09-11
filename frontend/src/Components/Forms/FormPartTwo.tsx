@@ -246,7 +246,7 @@ const FormPartTwo: React.FC = () => {
           </div>
         )}
 
-        <p >Please bring a copy of your membership ID proof on the conference day.</p>
+    
 
         <div className="flex justify-between mt-4">
           <button
