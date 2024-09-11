@@ -75,7 +75,7 @@ const FormPartOne: React.FC = () => {
             required: "Contact number is required",
             pattern: {
               value: /^\+\d{1,3}\s\d{1,15}$/,
-              message: "Invalid phone number format. Example: +91 1231231231 ",
+              message: "Invalid format. Example: +91 1231231231. Add a space after the country code.",
             },
           }}
           render={({ field }) => (

@@ -92,10 +92,10 @@ const FormPartThree: React.FC = () => {
       return { required: "Enter No. of Pages" };
     } else {
       return {
-        required: "Please enter a value of 1 or 2",
+        required: "Please enter a value between 1 to 4",
         pattern: {
-          value: /^[1-2]$/,
-          message: "Please enter a value of 1 or 2",
+          value: /^[1-4]$/,
+          message: "Please enter a value between 1 to 4",
         },
       };
     }
@@ -258,7 +258,7 @@ const FormPartThree: React.FC = () => {
                       type="text"
                       id="extraValue"
                       placeholder={
-                        isDoc ? "Enter number of pages" : "Max no.of pages 2"
+                        isDoc ? "Enter number of pages" : "Max no.of pages 4"
                       }
                       className="border border-gray-300 h-10 pl-3 pr-4 rounded-md w-full"
                     />
