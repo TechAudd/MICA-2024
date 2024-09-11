@@ -52,13 +52,13 @@ const formSchema = new Schema(
       type: String,
       default: "",
     },
-    // member: {
-    //   type: String,
-    //   enum: ["IEEE member", "non-IEEE member", "IES member"],
-    // },
-    // membershipId: {
-    //   type: String,
-    // },
+    member: {
+      type: String,
+      enum: ["IEEE member", "non-IEEE member", "IES member"],
+    },
+    membershipId: {
+      type: String,
+    },
     pages: {
       type: String,
       default: "",
