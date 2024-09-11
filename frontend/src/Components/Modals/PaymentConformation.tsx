@@ -129,7 +129,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         ? "Industry Expert"
         : currentValues?.functionArea === FUNCTIONING_AREA.STUDENT
           ? "Student"
-          : currentValues?.functionArea === FUNCTIONING_AREA.STUDENT_FULL_REGISTRATION ? "Student(Fully Registered)" : FUNCTIONING_AREA.STUDENT_ADDITIONAL ? "Student Additional Registration" : "Faculty",
+          : currentValues?.functionArea === FUNCTIONING_AREA.FACULTY
+            ? "Faculty"
+            : currentValues?.functionArea === FUNCTIONING_AREA.STUDENT_FULL_REGISTRATION ? "Student(Fully Registered)" : FUNCTIONING_AREA.STUDENT_ADDITIONAL ? "Student Additional Registration" : "Faculty",
     designation: currentValues?.designation || "",
     member: currentValues?.ieeeMembership || "",
     membershipId: currentValues?.membershipID || "",
@@ -157,6 +159,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         ? "Industry Expert"
         : currentValues?.functionArea === FUNCTIONING_AREA.STUDENT
           ? "Student"
+          : currentValues?.functionArea === FUNCTIONING_AREA.FACULTY
+          ? "Faculty"
           : currentValues?.functionArea === FUNCTIONING_AREA.STUDENT_FULL_REGISTRATION ? "Student(Fully Registered)" : FUNCTIONING_AREA.STUDENT_ADDITIONAL ? "Student Additional Registration" : "Faculty",
     designation: currentValues?.designation || "",
     member: currentValues?.ieeeMembership || "",
@@ -164,12 +168,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     pages: findPages() || "",
     price: netAmount,
     researchTitle: currentFormThreeValues?.researchTitle,
-    currency: currentFormOneValues.currency ,
-    selectedFileUrl : currentValues?.selectedFileUrl,
-    selectedFileId : currentValues?.selectedFileId,
-    uploadedFileUrl :  currentFormThreeValues?.uploadedFileUrl,
-    uploadedFileId :  currentFormThreeValues?.uploadedFileId,
-    
+    currency: currentFormOneValues.currency,
+    selectedFileUrl: currentValues?.selectedFileUrl,
+    selectedFileId: currentValues?.selectedFileId,
+    uploadedFileUrl: currentFormThreeValues?.uploadedFileUrl,
+    uploadedFileId: currentFormThreeValues?.uploadedFileId,
+
   };
 
 

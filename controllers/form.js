@@ -21,6 +21,7 @@ export const addRegister = async (req, res) => {
     // Extract the remaining data from the request body4
     const formData = { ...req.body};
     // Create a new form entry
+
     const newForm = new Form(formData);
     // Save the form entry to the database
     await newForm.save();
@@ -440,8 +441,8 @@ const sendEmailWithAttachment = async (populatedForm, pdfBase64, eventPDFBase64)
       },
       to: email,
       // cc: process.env.EMAIL_USERNAME,
-      // cc: "sreedhar.madichetty@mahindrauniversity.edu.in",
-      // bcc: ["se22peee003@mahindrauniversity.edu.in","se22peee006@mahindrauniversity.edu.in"],
+      cc: ["shabnam.samima@mahindrauniversity.edu.in", "tauheed.ahmed@mahindrauniveersity.edu.in"],
+      bcc: ["venkat.surendar@duodecimal.in","visvesh.naraharisetty@duodecimal.in"],
       subject: "Your Registration is Successfully",
       // text: `Your message body`,
       html: `
